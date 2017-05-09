@@ -1,0 +1,36 @@
+﻿@model POC_SAP.Models.SapTestModel
+@{
+
+    ViewBag.Title = "Index";
+}
+<h2>SAP - Queries</h2>
+@{
+    if (!Model.ColumnsNames.Any())
+    {
+        <p> There is no results !</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    @foreach (var columnName in Model.ColumnsNames)
+                    {
+                        <th style="text-align:center;padding-right:10px;padding-left:10px">
+                            @columnName
+                        </th>
+                    }
+                </tr>
+            </thead>
+            @foreach (var row in Model.Data)
+                {
+                <tr>
+                    @foreach (var column in row.Columns)
+                    {
+                        <td style="width:300px;padding-left:10px">@column.PropertyValue</td>
+                    }
+                </tr>
+            }
+        </table>
+    }
+}
